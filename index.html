@@ -1,0 +1,1944 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BANTAS TULAKIT: Gabay at Surian ng Bantas sa Tula (Grade 8)</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Google Fonts: Fredoka, Plus Jakarta Sans, Lexend -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Lexend:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Canvas Confetti CDN for Victory Celebration -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <!-- Tailwind Custom Theme Configuration -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              orange: '#F59E0B',
+              darkorange: '#D97706',
+              brown: '#3B1604',
+              darkbrown: '#280F02',
+              cardbrown: '#3B1D08',
+              cream: '#FEF3C7',
+              lightcream: '#FFFBEB',
+              accent: '#78350F'
+            }
+          },
+          fontFamily: {
+            fredoka: ['Fredoka', 'sans-serif'],
+            sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+            heading: ['Lexend', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #F59E0B 0%, #EA580C 50%, #B45309 100%);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      color: #FFF;
+    }
+
+    .heading-font {
+      font-family: 'Lexend', 'Fredoka', sans-serif;
+    }
+
+    .wave-bar {
+      animation: wave 1.2s ease-in-out infinite alternate;
+    }
+    .wave-bar:nth-child(2) { animation-delay: 0.2s; }
+    .wave-bar:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes wave {
+      0% { height: 4px; }
+      100% { height: 20px; }
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-8px); }
+      40%, 80% { transform: translateX(8px); }
+    }
+    .animate-shake {
+      animation: shake 0.5s ease-in-out;
+    }
+
+    .bantas-card-active {
+      border-color: #280F02 !important;
+      background-color: #FEF3C7 !important;
+      transform: scale(1.08);
+      box-shadow: 0 10px 20px -5px rgba(69, 26, 3, 0.4);
+    }
+
+    .target-hover {
+      background-color: #FDE68A !important;
+      border-color: #D97706 !important;
+      transform: scale(1.1);
+    }
+
+    .app-card {
+      background-color: #3B1D08;
+      border: 2px solid rgba(245, 158, 11, 0.3);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .app-card:hover {
+      border-color: rgba(245, 158, 11, 0.8);
+      transform: translateY(-2px);
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #280F02;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #D97706;
+      border-radius: 4px;
+    }
+
+    @keyframes scan {
+      0% { top: 0%; }
+      50% { top: 90%; }
+      100% { top: 0%; }
+    }
+    .scan-beam {
+      animation: scan 2.5s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="flex flex-col items-center justify-start min-h-screen p-2 sm:p-4 md:p-6">
+
+  <!-- Main Container Frame -->
+  <div class="w-full max-w-4xl bg-[#280F02] rounded-3xl overflow-hidden shadow-2xl border-4 border-amber-600/50 my-auto flex flex-col min-h-[92vh] relative">
+
+    <!-- Top Navigation & App Bar -->
+    <header class="bg-[#1C0A01] border-b border-amber-700/50 p-4 flex items-center justify-between sticky top-0 z-50">
+      <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('hub')">
+        <!-- BANTAS SA TULA LOGO: Poem Scroll + Feather Quill Pen + Floating Punctuation -->
+        <div class="w-11 h-11 bg-gradient-to-tr from-amber-500 via-orange-500 to-amber-300 rounded-full flex items-center justify-center p-0.5 shadow-md">
+          <div class="w-full h-full bg-[#3B1D08] rounded-full flex items-center justify-center border border-amber-400/40 p-1">
+            <svg class="w-7 h-7 text-amber-400" viewBox="0 0 100 100" fill="none">
+              <!-- Scroll Paper / Open Book -->
+              <path d="M18 28 C34 22, 50 30, 50 30 C50 30, 66 22, 82 28 L82 78 C66 72, 50 80, 50 80 C50 80, 34 72, 18 78 Z" fill="#280F02" stroke="#F59E0B" stroke-width="4" stroke-linejoin="round"/>
+              <path d="M50 30 L50 80" stroke="#D97706" stroke-width="3" stroke-dasharray="2 2"/>
+              <!-- Poem Lines -->
+              <line x1="26" y1="42" x2="40" y2="42" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="26" y1="52" x2="36" y2="52" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="26" y1="62" x2="38" y2="62" stroke="#FBBF24" stroke-width="2.5" stroke-linecap="round"/>
+              <!-- Punctuation Marks (Bantas) -->
+              <text x="41" y="45" fill="#F97316" font-size="13" font-weight="900" font-family="'Lexend', sans-serif">,</text>
+              <text x="37" y="55" fill="#F59E0B" font-size="12" font-weight="900" font-family="'Lexend', sans-serif">.</text>
+              <text x="39" y="65" fill="#F97316" font-size="12" font-weight="900" font-family="'Lexend', sans-serif">!</text>
+              <text x="56" y="44" fill="#FEF3C7" font-size="11" font-weight="900" font-family="'Lexend', sans-serif">“ ”</text>
+              <text x="58" y="58" fill="#F97316" font-size="13" font-weight="900" font-family="'Lexend', sans-serif">?</text>
+              <!-- Feather Quill Pen -->
+              <path d="M78 18 Q58 35 50 68 L46 75 L52 71 Q66 50 84 28 Z" fill="#F59E0B" stroke="#FEF3C7" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </div>
+        <div>
+          <h1 class="font-fredoka text-xl font-bold text-amber-400 tracking-wider leading-none">BANTAS TULAKIT</h1>
+          <p class="text-xs text-amber-200/80 font-medium">Gabay at Surian ng Bantas sa Tula • Grade 8</p>
+        </div>
+      </div>
+
+      <div class="flex items-center space-x-2">
+        <button onclick="switchTab('hub')" title="Pangunahing Menu" class="px-3 py-1.5 rounded-xl bg-amber-600/30 hover:bg-amber-600/50 text-amber-300 text-xs font-semibold flex items-center space-x-1 border border-amber-500/30 transition">
+          <i class="fa-solid fa-house"></i>
+          <span class="hidden sm:inline">Tahanan</span>
+        </button>
+        <button onclick="openInfoModal()" title="Tungkol sa App" class="w-8 h-8 rounded-xl bg-amber-900/50 text-amber-400 hover:text-amber-200 flex items-center justify-center border border-amber-700/40 transition">
+          <i class="fa-solid fa-circle-info"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Viewport Area -->
+    <main class="flex-1 p-3 sm:p-6 overflow-y-auto">
+
+      <!-- ================= HUB / MAIN MENU VIEW ================= -->
+      <div id="view-hub" class="tab-view space-y-6">
+        <div class="text-center py-6 px-4 bg-gradient-to-b from-[#3B1D08] to-[#200B01] rounded-3xl border border-amber-600/30 relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl pointer-events-none"></div>
+
+          <!-- MAIN HERO EMBLEM: BANTAS SA TULA (Scroll + Quill + Floating Punctuation Marks) -->
+          <div class="mx-auto w-32 h-32 sm:w-36 sm:h-36 relative flex items-center justify-center mb-3">
+            <svg class="w-full h-full drop-shadow-2xl" viewBox="0 0 140 140">
+              <defs>
+                <linearGradient id="scrollGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#FEF3C7" />
+                  <stop offset="50%" stop-color="#F59E0B" />
+                  <stop offset="100%" stop-color="#B45309" />
+                </linearGradient>
+                <linearGradient id="quillGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#FDBA74" />
+                  <stop offset="50%" stop-color="#EA580C" />
+                  <stop offset="100%" stop-color="#78350F" />
+                </linearGradient>
+                <filter id="goldGlow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="2" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+              </defs>
+
+              <!-- Outer Badge Ring -->
+              <circle cx="70" cy="70" r="64" fill="#280F02" stroke="#F59E0B" stroke-width="4" stroke-dasharray="6 3"/>
+              <circle cx="70" cy="70" r="58" fill="#3B1D08" stroke="#78350F" stroke-width="2"/>
+
+              <!-- Open Poem Manuscript / Scroll -->
+              <path d="M22 36 C46 26, 70 38, 70 38 C70 38, 94 26, 118 36 L118 96 C94 86, 70 98, 70 98 C70 98, 46 86, 22 96 Z" fill="url(#scrollGrad)" stroke="#78350F" stroke-width="3" stroke-linejoin="round"/>
+              <!-- Book Center Fold / Spine -->
+              <path d="M70 38 L70 98" stroke="#78350F" stroke-width="3" stroke-dasharray="3 2"/>
+
+              <!-- Poem Lines on Left Page -->
+              <line x1="30" y1="50" x2="52" y2="50" stroke="#78350F" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="30" y1="60" x2="56" y2="60" stroke="#78350F" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="30" y1="70" x2="48" y2="70" stroke="#78350F" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="30" y1="80" x2="54" y2="80" stroke="#78350F" stroke-width="2.5" stroke-linecap="round"/>
+
+              <!-- Punctuation Marks Embedded on Left Manuscript Page -->
+              <text x="54" y="53" fill="#D97706" font-size="18" font-weight="900" font-family="'Lexend', sans-serif">,</text>
+              <text x="58" y="63" fill="#EA580C" font-size="15" font-weight="900" font-family="'Lexend', sans-serif">!</text>
+              <text x="50" y="71" fill="#78350F" font-size="16" font-weight="900" font-family="'Lexend', sans-serif">-</text>
+              <text x="56" y="82" fill="#D97706" font-size="18" font-weight="900" font-family="'Lexend', sans-serif">.</text>
+
+              <!-- Punctuation Marks on Right Manuscript Page -->
+              <text x="76" y="52" fill="#78350F" font-size="14" font-weight="900" font-family="'Lexend', sans-serif">“ ”</text>
+              <text x="82" y="68" fill="#D97706" font-size="18" font-weight="900" font-family="'Lexend', sans-serif">?</text>
+              <text x="86" y="82" fill="#EA580C" font-size="18" font-weight="900" font-family="'Lexend', sans-serif">'</text>
+
+              <!-- Feather Quill Pen Writing on Scroll -->
+              <g transform="rotate(-18, 88, 45)">
+                <path d="M106 14 Q76 34 62 82 L57 93 L67 87 Q82 62 114 28 Z" fill="url(#quillGrad)" stroke="#FEF3C7" stroke-width="1.5" filter="url(#goldGlow)"/>
+                <path d="M62 82 L106 14" stroke="#FEF3C7" stroke-width="1.5" opacity="0.6"/>
+                <!-- Ink Tip -->
+                <polygon points="57,93 52,98 61,94" fill="#280F02"/>
+              </g>
+
+              <!-- Decorative Sparkles -->
+              <circle cx="20" cy="26" r="3" fill="#FBBF24"/>
+              <circle cx="120" cy="22" r="3.5" fill="#F59E0B"/>
+              <circle cx="114" cy="110" r="3" fill="#FEF3C7"/>
+            </svg>
+          </div>
+
+          <h2 class="heading-font text-3xl sm:text-4xl font-black text-amber-400 tracking-wider uppercase mb-1">
+            BANTAS TULAKIT
+          </h2>
+          <p class="text-amber-200 text-xs sm:text-sm font-semibold tracking-wide">
+            GabaySanayan at GabaySuri ng Bantas sa Tula
+          </p>
+          <div class="mt-3 inline-block bg-amber-500/20 text-amber-300 text-xs px-3 py-1 rounded-full border border-amber-500/30">
+            Pang-Akademikong GabaySuri sa Filipino 
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-2">
+          <!-- 1. Scan ang Tula -->
+          <div onclick="switchTab('scan')" class="app-card rounded-2xl p-5 cursor-pointer flex flex-col items-center text-center group">
+            <div class="w-16 h-16 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center mb-3 group-hover:scale-110 group-hover:bg-amber-500 transition-all duration-300 group-hover:text-amber-950">
+              <i class="fa-solid fa-camera-retro text-2xl"></i>
+            </div>
+            <h3 class="heading-font font-bold text-lg text-amber-100 group-hover:text-amber-400 transition">
+              Scan ang Tula
+            </h3>
+            <p class="text-xs text-amber-200/70 mt-1">
+              Kumuha o mag-upload ng larawan ng tula upang awtomatikong masuri ang bantas.
+            </p>
+          </div>
+
+          <!-- 2. Gabay sa Bantas -->
+          <div onclick="switchTab('gabay')" class="app-card rounded-2xl p-5 cursor-pointer flex flex-col items-center text-center group border-2 border-amber-500 bg-gradient-to-b from-[#4A260B] to-[#3B1D08]">
+            <div class="w-16 h-16 rounded-2xl bg-amber-500 text-amber-950 flex items-center justify-center mb-3 group-hover:scale-110 transition-all duration-300 shadow-md">
+              <i class="fa-solid fa-book-open-reader text-2xl"></i>
+            </div>
+            <h3 class="heading-font font-extrabold text-lg text-amber-300 group-hover:text-amber-200 transition">
+              Gabay sa Bantas
+            </h3>
+            <p class="text-xs text-amber-100/80 mt-1">
+              Tuntunin sa Kuwit, Tuldok, Gitling, Kudlit, Panipi, Padamdam, at Pananong.
+            </p>
+          </div>
+
+          <!-- 3. I-Type ang Tula -->
+          <div onclick="switchTab('type')" class="app-card rounded-2xl p-5 cursor-pointer flex flex-col items-center text-center group">
+            <div class="w-16 h-16 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center mb-3 group-hover:scale-110 group-hover:bg-amber-500 transition-all duration-300 group-hover:text-amber-950">
+              <i class="fa-solid fa-pen-to-square text-2xl"></i>
+            </div>
+            <h3 class="heading-font font-bold text-lg text-amber-100 group-hover:text-amber-400 transition">
+              I-Type ang Tula
+            </h3>
+            <p class="text-xs text-amber-200/70 mt-1">
+              Isulat o i-paste ang tula para sa komprehensibong pag-check ng bantas at salita.
+            </p>
+          </div>
+
+          <!-- 4. Pagsasanay -->
+          <div onclick="switchTab('pagsasanay')" class="app-card rounded-2xl p-5 cursor-pointer flex flex-col items-center text-center group">
+            <div class="w-16 h-16 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center mb-3 group-hover:scale-110 group-hover:bg-amber-500 transition-all duration-300 group-hover:text-amber-950">
+              <i class="fa-solid fa-gamepad text-2xl"></i>
+            </div>
+            <h3 class="heading-font font-bold text-lg text-amber-100 group-hover:text-amber-400 transition">
+              Pagsasanay
+            </h3>
+            <p class="text-xs text-amber-200/70 mt-1">
+              Interactive na pagpuno ng bantas gamit ang nagsasalitang bantas at boses.
+            </p>
+          </div>
+
+          <!-- 5. Rubrik sa Pagtatasa -->
+          <div onclick="switchTab('rubrik')" class="app-card rounded-2xl p-5 cursor-pointer flex flex-col items-center text-center group sm:col-span-2 lg:col-span-1">
+            <div class="w-16 h-16 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center mb-3 group-hover:scale-110 group-hover:bg-amber-500 transition-all duration-300 group-hover:text-amber-950">
+              <i class="fa-solid fa-list-check text-2xl"></i>
+            </div>
+            <h3 class="heading-font font-bold text-lg text-amber-100 group-hover:text-amber-400 transition">
+              Rubrik sa Pagtatasa
+            </h3>
+            <p class="text-xs text-amber-200/70 mt-1">
+              Pamantayan sa pagmamarka ng bantas sa tula para sa guro at mag-aaral.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= MODULE 1: SCAN ANG TULA ================= -->
+      <div id="view-scan" class="tab-view hidden space-y-5">
+        <div class="flex items-center justify-between border-b border-amber-800/60 pb-3">
+          <div class="flex items-center space-x-2">
+            <div class="p-2 bg-amber-500/20 text-amber-400 rounded-lg">
+              <i class="fa-solid fa-camera-retro"></i>
+            </div>
+            <div>
+              <h2 class="heading-font text-xl font-bold text-amber-300">Scan ang Tula</h2>
+              <p class="text-xs text-amber-200/70">Awtomatikong Pagbasa sa Larawan ng Tula (OCR Scanner Simulator)</p>
+            </div>
+          </div>
+          <button onclick="switchTab('hub')" class="text-xs text-amber-400 hover:underline">
+            <i class="fa-solid fa-arrow-left mr-1"></i>Bumalik
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+          <div class="bg-[#3B1D08] p-5 rounded-2xl border border-amber-700/40 space-y-4 flex flex-col items-center justify-center text-center">
+            <div id="scanViewport" class="w-full h-64 bg-[#1C0A01] rounded-xl border-2 border-dashed border-amber-600/50 flex flex-col items-center justify-center relative overflow-hidden group">
+              <div id="scanLine" class="hidden absolute w-full h-1 bg-amber-400 shadow-[0_0_15px_#F59E0B] scan-beam z-20"></div>
+
+              <div id="scanPrompt" class="space-y-2 p-4">
+                <i class="fa-solid fa-cloud-arrow-up text-4xl text-amber-500 group-hover:scale-110 transition"></i>
+                <p class="text-sm font-medium text-amber-200">I-drag & drop ang larawan ng tula rito</p>
+                <p class="text-xs text-amber-200/60">o pumili ng file sa iyong aparato (PNG, JPG)</p>
+                <input type="file" id="imageFileInput" accept="image/*" onchange="handleImageUpload(event)" class="hidden">
+                <button onclick="document.getElementById('imageFileInput').click()" class="mt-2 px-4 py-1.5 bg-amber-600 hover:bg-amber-500 text-amber-950 font-bold text-xs rounded-xl transition">
+                  Mag-upload ng File
+                </button>
+              </div>
+
+              <img id="scannedImagePreview" class="hidden absolute inset-0 w-full h-full object-contain p-2 bg-[#1A0C02]" alt="Scanned Poem">
+            </div>
+
+            <p class="text-xs text-amber-200/70">
+              <i class="fa-solid fa-circle-info mr-1 text-amber-400"></i>
+              Maaari ring pumili sa mga akademikong halimbawa sa ibaba:
+            </p>
+          </div>
+
+          <div class="bg-[#3B1D08] p-5 rounded-2xl border border-amber-700/40 space-y-3">
+            <h3 class="heading-font font-bold text-sm text-amber-300 border-b border-amber-800/50 pb-2">
+              <i class="fa-solid fa-images mr-2 text-amber-400"></i>Mga Halimbawang Larawan ng Tula:
+            </h3>
+
+            <div class="space-y-3">
+              <div onclick="simulateScan('guryon')" class="p-3 bg-[#280F02] hover:bg-[#4A260B] rounded-xl border border-amber-700/30 cursor-pointer flex items-center space-x-3 transition">
+                <div class="w-10 h-10 bg-amber-950 rounded-lg flex items-center justify-center text-amber-400 font-bold border border-amber-700/40 shrink-0">
+                  <i class="fa-solid fa-file-lines text-base"></i>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <h4 class="text-sm font-bold text-amber-200 truncate">Larawan 1: Ang Guryon</h4>
+                  <p class="text-xs text-amber-200/60">Ildefonso Santos (Kulang sa gitling at kuwit)</p>
+                </div>
+                <span class="text-xs bg-amber-500/20 text-amber-300 px-2 py-1 rounded-lg border border-amber-500/30">I-Scan</span>
+              </div>
+
+              <div onclick="simulateScan('langit')" class="p-3 bg-[#280F02] hover:bg-[#4A260B] rounded-xl border border-amber-700/30 cursor-pointer flex items-center space-x-3 transition">
+                <div class="w-10 h-10 bg-amber-950 rounded-lg flex items-center justify-center text-amber-400 font-bold border border-amber-700/40 shrink-0">
+                  <i class="fa-solid fa-file-lines text-base"></i>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <h4 class="text-sm font-bold text-amber-200 truncate">Larawan 2: Isang Dipang Langit</h4>
+                  <p class="text-xs text-amber-200/60">Amado V. Hernandez (Kulang sa bantas sa saknong)</p>
+                </div>
+                <span class="text-xs bg-amber-500/20 text-amber-300 px-2 py-1 rounded-lg border border-amber-500/30">I-Scan</span>
+              </div>
+
+              <div onclick="simulateScan('bayan')" class="p-3 bg-[#280F02] hover:bg-[#4A260B] rounded-xl border border-amber-700/30 cursor-pointer flex items-center space-x-3 transition">
+                <div class="w-10 h-10 bg-amber-950 rounded-lg flex items-center justify-center text-amber-400 font-bold border border-amber-700/40 shrink-0">
+                  <i class="fa-solid fa-file-lines text-base"></i>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <h4 class="text-sm font-bold text-amber-200 truncate">Larawan 3: Bayan Ko</h4>
+                  <p class="text-xs text-amber-200/60">Jose Corazon de Jesus (Kulang sa kudlit at gitling)</p>
+                </div>
+                <span class="text-xs bg-amber-500/20 text-amber-300 px-2 py-1 rounded-lg border border-amber-500/30">I-Scan</span>
+              </div>
+            </div>
+
+            <div id="ocrProgressContainer" class="hidden space-y-2 pt-2">
+              <div class="flex items-center justify-between text-xs text-amber-300">
+                <span id="ocrStatusText">Nagsa-scan ng teksto...</span>
+                <span id="ocrPercent">0%</span>
+              </div>
+              <div class="w-full h-2 bg-[#1A0C02] rounded-full overflow-hidden">
+                <div id="ocrProgressBar" class="h-full bg-gradient-to-r from-amber-500 to-orange-500 w-0 transition-all duration-300"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= MODULE 2: GABAY SA BANTAS ================= -->
+      <div id="view-gabay" class="tab-view hidden space-y-5">
+        <div class="flex items-center justify-between border-b border-amber-800/60 pb-3">
+          <div class="flex items-center space-x-2">
+            <div class="p-2 bg-amber-500/20 text-amber-400 rounded-lg">
+              <i class="fa-solid fa-book-open-reader"></i>
+            </div>
+            <div>
+              <h2 class="heading-font text-xl font-bold text-amber-300">Gabay sa Bantas</h2>
+              <p class="text-xs text-amber-200/70">Akademikong Tuntunin at Halimbawa sa Bawat Bantas sa Tula</p>
+            </div>
+          </div>
+          <button onclick="switchTab('hub')" class="text-xs text-amber-400 hover:underline">
+            <i class="fa-solid fa-arrow-left mr-1"></i>Bumalik
+          </button>
+        </div>
+
+        <div class="flex flex-wrap gap-2">
+          <button onclick="filterRule('all')" class="rule-btn active-rule px-3 py-1.5 rounded-xl bg-amber-500 text-amber-950 font-bold text-xs transition">Lahat</button>
+          <button onclick="filterRule('kuwit')" class="rule-btn px-3 py-1.5 rounded-xl bg-[#3B1D08] hover:bg-amber-900 text-amber-300 border border-amber-700/40 text-xs font-semibold transition">Kuwit (,)</button>
+          <button onclick="filterRule('tuldok')" class="rule-btn px-3 py-1.5 rounded-xl bg-[#3B1D08] hover:bg-amber-900 text-amber-300 border border-amber-700/40 text-xs font-semibold transition">Tuldok (.)</button>
+          <button onclick="filterRule('gitling')" class="rule-btn px-3 py-1.5 rounded-xl bg-[#3B1D08] hover:bg-amber-900 text-amber-300 border border-amber-700/40 text-xs font-semibold transition">Gitling (-)</button>
+          <button onclick="filterRule('kudlit')" class="rule-btn px-3 py-1.5 rounded-xl bg-[#3B1D08] hover:bg-amber-900 text-amber-300 border border-amber-700/40 text-xs font-semibold transition">Kudlit (')</button>
+          <button onclick="filterRule('iba')" class="rule-btn px-3 py-1.5 rounded-xl bg-[#3B1D08] hover:bg-amber-900 text-amber-300 border border-amber-700/40 text-xs font-semibold transition">Panipi/Padamdam/Pananong</button>
+        </div>
+
+        <div id="rulesGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Kuwit Card -->
+          <div class="rule-card category-kuwit bg-[#3B1D08] p-5 rounded-2xl border border-amber-700/40 space-y-3">
+            <div class="flex items-center space-x-3">
+              <span class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 font-extrabold text-xl flex items-center justify-center border border-amber-500/30">,</span>
+              <div>
+                <h3 class="heading-font font-bold text-base text-amber-200">1. Kuwit sa Dulo ng Taludtod</h3>
+                <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded">Saglit na Paghinga</span>
+              </div>
+            </div>
+            <p class="text-xs text-amber-100/80 leading-relaxed">
+              Ginagamit ang kuwit (,) sa dulo ng taludtod kapag ang kaisipan ng linya ay tuloy-tuloy pa sa susunod na taludtod sa loob ng parehong saknong.
+            </p>
+            <div class="space-y-1.5 text-xs">
+              <div class="p-2.5 rounded-xl bg-emerald-950/60 border border-emerald-700/40">
+                <span class="font-bold text-emerald-400">🟢 Tamang Gamit:</span>
+                <p class="text-emerald-100 font-mono italic mt-0.5">"Sa gitna ng gabing madilim at ginaw,<br>ako'y naghihintay sa iyong pagtanaw,"</p>
+              </div>
+              <div class="p-2.5 rounded-xl bg-rose-950/60 border border-rose-700/40">
+                <span class="font-bold text-rose-400">🔴 Maling Gamit:</span>
+                <p class="text-rose-100 font-mono italic mt-0.5">"Sa gitna ng gabing madilim at ginaw.<br>ako'y naghihintay sa iyong pagtanaw."</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tuldok Card -->
+          <div class="rule-card category-tuldok bg-[#3B1D08] p-5 rounded-2xl border border-amber-700/40 space-y-3">
+            <div class="flex items-center space-x-3">
+              <span class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 font-extrabold text-xl flex items-center justify-center border border-amber-500/30">.</span>
+              <div>
+                <h3 class="heading-font font-bold text-base text-amber-200">2. Tuldok sa Dulo ng Saknong</h3>
+                <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded">Ganap na Hinto</span>
+              </div>
+            </div>
+            <p class="text-xs text-amber-100/80 leading-relaxed">
+              Ang huling taludtod ng saknong ay kailangang magtapos sa tuldok (.), pananong (?), o padamdam (!) upang menandakan ang wakas ng saknong.
+            </p>
+            <div class="space-y-1.5 text-xs">
+              <div class="p-2.5 rounded-xl bg-emerald-950/60 border border-emerald-700/40">
+                <span class="font-bold text-emerald-400">🟢 Tamang Gamit:</span>
+                <p class="text-emerald-100 font-mono italic mt-0.5">"...at sa bayan ko'y may pag-asa pa." (Wakas ng saknong)</p>
+              </div>
+              <div class="p-2.5 rounded-xl bg-rose-950/60 border border-rose-700/40">
+                <span class="font-bold text-rose-400">🔴 Maling Gamit:</span>
+                <p class="text-rose-100 font-mono italic mt-0.5">"...at sa bayan ko'y may pag-asa pa," (Mali dahil kuwit sa wakas)</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Gitling Card -->
+          <div class="rule-card category-gitling bg-[#3B1D08] p-5 rounded-2xl border border-amber-700/40 space-y-3">
+            <div class="flex items-center space-x-3">
+              <span class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 font-extrabold text-xl flex items-center justify-center border border-amber-500/30">-</span>
+              <div>
+                <h3 class="heading-font font-bold text-base text-amber-200">3. Gitling sa Salitang Inulit & Unlapi</h3>
+                <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded">Pag-uugnay ng Salita</span>
+              </div>
+            </div>
+            <p class="text-xs text-amber-100/80 leading-relaxed">
+              Nilalagyan ng gitling (-) ang mga salitang inulit (hal. <i>gabi-gabi</i>, <i>araw-araw</i>) at unlaping nagtatapos sa katinig na sinusundan ng patinig (hal. <i>pag-asa</i>, <i>mag-isa</i>).
+            </p>
+            <div class="space-y-1.5 text-xs">
+              <div class="p-2.5 rounded-xl bg-emerald-950/60 border border-emerald-700/40">
+                <span class="font-bold text-emerald-400">🟢 Tamang Gamit:</span>
+                <p class="text-emerald-100 font-mono italic mt-0.5">gabi-gabi, araw-araw, pag-asa, mag-isa, maka-Diyos</p>
+              </div>
+              <div class="p-2.5 rounded-xl bg-rose-950/60 border border-rose-700/40">
+                <span class="font-bold text-rose-400">🔴 Maling Gamit:</span>
+                <p class="text-rose-100 font-mono italic mt-0.5">gabigabi, araw araw, pagasa, magisa, makadiyos</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kudlit Card -->
+          <div class="rule-card category-kudlit bg-[#3B1D08] p-5 rounded-2xl border border-amber-700/40 space-y-3">
+            <div class="flex items-center space-x-3">
+              <span class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 font-extrabold text-xl flex items-center justify-center border border-amber-500/30">'</span>
+              <div>
+                <h3 class="heading-font font-bold text-base text-amber-200">4. Kudlit (') sa Pag-aawas ng Titik</h3>
+                <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded">Apostrope sa Tula</span>
+              </div>
+            </div>
+            <p class="text-xs text-amber-100/80 leading-relaxed">
+              Ginagamit ang kudlit (') kung may nawawalang titik sa dalawang salitang pinag-isa sa tula upang ingatan ang sukat o bilang ng pantig.
+            </p>
+            <div class="space-y-1.5 text-xs">
+              <div class="p-2.5 rounded-xl bg-emerald-950/60 border border-emerald-700/40">
+                <span class="font-bold text-emerald-400">🟢 Tamang Gamit:</span>
+                <p class="text-emerald-100 font-mono italic mt-0.5">ako'y (ako ay), siya'y (siya ay), puso't (puso at), bayan ko'y</p>
+              </div>
+              <div class="p-2.5 rounded-xl bg-rose-950/60 border border-rose-700/40">
+                <span class="font-bold text-rose-400">🔴 Maling Gamit:</span>
+                <p class="text-rose-100 font-mono italic mt-0.5">akoy, siyay, pusot, bayan koy</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Panipi, Padamdam, Pananong Card -->
+          <div class="rule-card category-iba bg-[#3B1D08] p-5 rounded-2xl border border-amber-700/40 space-y-3 md:col-span-2">
+            <div class="flex items-center space-x-3">
+              <span class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 font-extrabold text-xl flex items-center justify-center border border-amber-500/30">“ ! ?</span>
+              <div>
+                <h3 class="heading-font font-bold text-base text-amber-200">5. Panipi (“ ”), Padamdam (!), at Pananong (?)</h3>
+                <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded">Emosyon at Pahayag</span>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+              <div class="p-3 bg-[#280F02] rounded-xl border border-amber-800/40">
+                <strong class="text-emerald-400 font-bold block mb-1">Panipi (“ ”)</strong>
+                <p class="text-amber-100/80">Ipinapaloob ang direktang salita o pahayag ng tauhan sa tula.</p>
+              </div>
+              <div class="p-3 bg-[#280F02] rounded-xl border border-amber-800/40">
+                <strong class="text-purple-400 font-bold block mb-1">Padamdam (!)</strong>
+                <p class="text-amber-100/80">Inilalagay sa dulo kapag nagpapahayag ng matinding emosyon o sigaw.</p>
+              </div>
+              <div class="p-3 bg-[#280F02] rounded-xl border border-amber-800/40">
+                <strong class="text-indigo-400 font-bold block mb-1">Pananong (?)</strong>
+                <p class="text-amber-100/80">Inilalagay sa dulo kapag ang taludtod ay nag-iiwan ng tanong.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= MODULE 3: I-TYPE ANG TULA ================= -->
+      <div id="view-type" class="tab-view hidden space-y-5">
+        <div class="flex items-center justify-between border-b border-amber-800/60 pb-3">
+          <div class="flex items-center space-x-2">
+            <div class="p-2 bg-amber-500/20 text-amber-400 rounded-lg">
+              <i class="fa-solid fa-pen-to-square"></i>
+            </div>
+            <div>
+              <h2 class="heading-font text-xl font-bold text-amber-300">I-Type ang Tula</h2>
+              <p class="text-xs text-amber-200/70">Matalinong Surian sa Bantas at Baybay ng Bawat Salita</p>
+            </div>
+          </div>
+          <button onclick="switchTab('hub')" class="text-xs text-amber-400 hover:underline">
+            <i class="fa-solid fa-arrow-left mr-1"></i>Bumalik
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+          <div class="lg:col-span-2 bg-[#3B1D08] p-4 rounded-2xl border border-amber-700/40 space-y-3">
+            <div class="flex items-center justify-between flex-wrap gap-2">
+              <label for="poemInput" class="text-sm font-semibold text-amber-200 flex items-center">
+                <i class="fa-solid fa-feather-pointed mr-2 text-amber-400"></i>Isulat o I-paste ang Tula:
+              </label>
+              <select id="presetSelect" onchange="loadPresetPoem(this.value)" class="bg-[#280F02] text-amber-300 text-xs border border-amber-600/50 rounded-xl px-2 py-1 focus:outline-none focus:ring-1 focus:ring-amber-400">
+                <option value="">-- Pumili ng Halimbawang Tula --</option>
+                <option value="guryon">Ang Guryon (Ildefonso Santos)</option>
+                <option value="langit">Isang Dipang Langit (Amado V. Hernandez)</option>
+                <option value="bayan">Bayan Ko (Jose Corazon de Jesus)</option>
+                <option value="kabata">Sa Aking Mga Kabata (Dr. Jose Rizal)</option>
+              </select>
+            </div>
+
+            <textarea id="poemInput" rows="9" placeholder="Halimbawa ng Saknong:
+
+Bawat gabi araw ako ay nag-iisa,
+sa gitna ng dilim at kawalan ng pagasa,
+bayan koy lumalaban hanggang sa huli.
+magisa akong nag-aral ng makadiyos na tula" class="w-full bg-[#1C0A01] text-amber-100 p-3.5 rounded-xl border border-amber-700/50 focus:border-amber-400 focus:outline-none font-mono text-sm leading-relaxed tracking-wide placeholder-amber-700/60"></textarea>
+
+            <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
+              <button onclick="clearPoemInput()" class="px-3 py-2 bg-amber-950 hover:bg-amber-900 text-amber-400 text-xs font-semibold rounded-xl border border-amber-800 transition">
+                <i class="fa-solid fa-trash-can mr-1"></i> Linisin
+              </button>
+              <button onclick="runPoemCheck()" class="px-6 py-2.5 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-amber-950 font-extrabold text-sm rounded-xl shadow-lg transition flex items-center space-x-2">
+                <i class="fa-solid fa-magnifying-glass-chart"></i>
+                <span>SURIIN ANG BANTAS AT SALITA</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="bg-[#280F02] p-4 rounded-2xl border border-amber-800/50 space-y-3">
+            <h3 class="heading-font text-sm font-bold text-amber-400 flex items-center border-b border-amber-800/50 pb-2">
+              <i class="fa-solid fa-clipboard-check mr-2"></i>Mga Sinusuri ng Engine:
+            </h3>
+            <ul class="text-xs text-amber-200/80 space-y-2">
+              <li class="flex items-start">
+                <i class="fa-solid fa-check text-amber-400 mt-0.5 mr-2"></i>
+                <span><strong>Dulo ng Taludtod:</strong> Kuwit (,), pananong (?), o padamdam (!).</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa-solid fa-check text-amber-400 mt-0.5 mr-2"></i>
+                <span><strong>Dulo ng Saknong:</strong> Tuldok (.), pananong (?), o padamdam (!).</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa-solid fa-check text-amber-400 mt-0.5 mr-2"></i>
+                <span><strong>Gitling sa Inulit:</strong> (<i>gabi-gabi</i>, <i>araw-araw</i>).</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa-solid fa-check text-amber-400 mt-0.5 mr-2"></i>
+                <span><strong>Unlapi + Patinig:</strong> (<i>pag-asa</i>, <i>mag-isa</i>).</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa-solid fa-check text-amber-400 mt-0.5 mr-2"></i>
+                <span><strong>Unlapi + Pantangi:</strong> (<i>maka-Diyos</i>, <i>taga-Maynila</i>).</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa-solid fa-check text-amber-400 mt-0.5 mr-2"></i>
+                <span><strong>Kudlit ('):</strong> Pag-aawas (<i>ako'y</i>, <i>siya'y</i>, <i>puso't</i>).</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Analytical Output View -->
+        <div id="checkResultsContainer" class="hidden space-y-4">
+          <div class="bg-[#3B1D08] p-4 sm:p-5 rounded-2xl border border-amber-600/50 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-4">
+              <div id="scoreBadge" class="w-16 h-16 rounded-full bg-amber-500 text-amber-950 font-black text-xl flex items-center justify-center border-4 border-amber-300 shadow-inner">
+                0%
+              </div>
+              <div>
+                <h3 class="heading-font font-bold text-lg text-amber-300">Pangkalahatang Marka ng Bantas</h3>
+                <p id="scoreMessage" class="text-xs text-amber-200/80">Kumpletong ulat sa ibaba sa bawat taludtod.</p>
+              </div>
+            </div>
+            <button onclick="copyCorrectedPoem()" class="px-4 py-2 bg-amber-600/30 hover:bg-amber-600/50 text-amber-300 border border-amber-500/40 text-xs font-semibold rounded-xl flex items-center space-x-1.5 transition">
+              <i class="fa-regular fa-copy"></i>
+              <span>Kopyahin ang Iniwastong Tula</span>
+            </button>
+          </div>
+
+          <div class="bg-[#3B1D08] p-4 sm:p-5 rounded-2xl border border-amber-700/40 space-y-3">
+            <h3 class="heading-font font-bold text-base text-amber-300 flex items-center">
+              <i class="fa-solid fa-list-ol mr-2 text-amber-400"></i>Pagsusuri sa Bawat Taludtod at Salita:
+            </h3>
+
+            <div id="lineResultsList" class="space-y-3"></div>
+          </div>
+
+          <!-- Comparison Box -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-[#1C0A01] p-4 rounded-xl border border-red-900/40">
+              <h4 class="text-xs font-bold text-red-400 uppercase tracking-wider mb-2">Original na Isinulat:</h4>
+              <pre id="rawPoemPreview" class="text-xs text-stone-300 font-mono whitespace-pre-wrap leading-relaxed"></pre>
+            </div>
+            <div class="bg-[#1C0A01] p-4 rounded-xl border border-emerald-900/40">
+              <h4 class="text-xs font-bold text-emerald-400 uppercase tracking-wider mb-2">Iniwasto at Tamang Bantas:</h4>
+              <pre id="correctedPoemPreview" class="text-xs text-emerald-200 font-mono whitespace-pre-wrap leading-relaxed font-semibold"></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= MODULE 4: PAGSASANAY ================= -->
+      <div id="view-pagsasanay" class="tab-view hidden space-y-5">
+        <div class="flex items-center justify-between border-b border-amber-800/60 pb-3">
+          <div class="flex items-center space-x-2">
+            <div class="p-2 bg-amber-500/20 text-amber-400 rounded-lg">
+              <i class="fa-solid fa-gamepad"></i>
+            </div>
+            <div>
+              <h2 class="heading-font text-xl font-bold text-amber-300">Tula Sanayan (Pagsasanay)</h2>
+              <p class="text-xs text-amber-200/70">Punan ng Tamang Bantas ang Tula (Grade 8 Panulaan)</p>
+            </div>
+          </div>
+          <button onclick="switchTab('hub')" class="text-xs text-amber-400 hover:underline">
+            <i class="fa-solid fa-arrow-left mr-1"></i>Bumalik
+          </button>
+        </div>
+
+        <div class="bg-gradient-to-r from-amber-100 to-amber-200 p-3 sm:p-4 rounded-2xl border-2 border-brand-orange/50 flex flex-wrap items-center justify-between gap-3 text-slate-800 shadow-sm">
+          <div class="flex items-center gap-3">
+            <div class="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-xl border border-amber-300 text-brand-brown font-bold text-sm">
+              <i class="fa-solid fa-trophy text-amber-500"></i>
+              <span>Puntos: <span id="scoreDisplay" class="text-brand-darkorange text-base">0</span>/<span id="totalBlanksDisplay">0</span></span>
+            </div>
+            <div class="flex items-center gap-1 text-amber-500 text-sm sm:text-base" id="starContainer">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button onclick="giveHint()" class="px-3 py-1.5 bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs rounded-xl transition-all shadow flex items-center gap-1.5">
+              <i class="fa-solid fa-lightbulb"></i>
+              <span>Pahiwatig</span>
+            </button>
+            <button onclick="resetCurrentStanza()" class="px-3 py-1.5 bg-brand-brown hover:bg-black text-amber-200 font-bold text-xs rounded-xl transition-all shadow flex items-center gap-1.5">
+              <i class="fa-solid fa-rotate-right"></i>
+              <span>Ulitin</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-white p-4 rounded-2xl border-2 border-brand-orange/60 text-slate-800 shadow-md">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2 text-brand-brown font-fredoka font-bold text-sm">
+              <i class="fa-solid fa-boxes-stacked text-brand-darkorange"></i>
+              <span>Kahon ng mga Bantas (Pumili o I-drag sa tula):</span>
+            </div>
+            <span class="text-[11px] font-bold text-slate-500 bg-amber-100 px-2.5 py-0.5 rounded-md hidden sm:inline">Pindutin o I-drag sa Patlang</span>
+          </div>
+
+          <div class="grid grid-cols-4 sm:grid-cols-7 gap-2 sm:gap-3" id="bantasPalette">
+            <div draggable="true" ondragstart="handleDragStart(event, 'tuldok')" onclick="selectBantasCard('tuldok')" id="card-tuldok" class="bantas-palette-card cursor-pointer bg-amber-50 border-2 border-amber-300 hover:border-brand-brown p-2 rounded-xl flex flex-col items-center justify-center transition-all select-none group">
+              <div class="w-10 h-10 rounded-full bg-red-500 text-white flex items-center justify-center font-bold text-xl shadow group-hover:scale-110 transition-transform">.</div>
+              <span class="text-[11px] font-bold mt-1 text-brand-brown">Tuldok</span>
+            </div>
+            <div draggable="true" ondragstart="handleDragStart(event, 'kuwit')" onclick="selectBantasCard('kuwit')" id="card-kuwit" class="bantas-palette-card cursor-pointer bg-amber-50 border-2 border-amber-300 hover:border-brand-brown p-2 rounded-xl flex flex-col items-center justify-center transition-all select-none group">
+              <div class="w-10 h-10 rounded-full bg-amber-500 text-white flex items-center justify-center font-bold text-xl shadow group-hover:scale-110 transition-transform">,</div>
+              <span class="text-[11px] font-bold mt-1 text-brand-brown">Kuwit</span>
+            </div>
+            <div draggable="true" ondragstart="handleDragStart(event, 'panipi')" onclick="selectBantasCard('panipi')" id="card-panipi" class="bantas-palette-card cursor-pointer bg-amber-50 border-2 border-amber-300 hover:border-brand-brown p-2 rounded-xl flex flex-col items-center justify-center transition-all select-none group">
+              <div class="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-base shadow group-hover:scale-110 transition-transform">“ ”</div>
+              <span class="text-[11px] font-bold mt-1 text-brand-brown">Panipi</span>
+            </div>
+            <div draggable="true" ondragstart="handleDragStart(event, 'gitling')" onclick="selectBantasCard('gitling')" id="card-gitling" class="bantas-palette-card cursor-pointer bg-amber-50 border-2 border-amber-300 hover:border-brand-brown p-2 rounded-xl flex flex-col items-center justify-center transition-all select-none group">
+              <div class="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold text-xl shadow group-hover:scale-110 transition-transform">-</div>
+              <span class="text-[11px] font-bold mt-1 text-brand-brown">Gitling</span>
+            </div>
+            <div draggable="true" ondragstart="handleDragStart(event, 'padamdam')" onclick="selectBantasCard('padamdam')" id="card-padamdam" class="bantas-palette-card cursor-pointer bg-amber-50 border-2 border-amber-300 hover:border-brand-brown p-2 rounded-xl flex flex-col items-center justify-center transition-all select-none group">
+              <div class="w-10 h-10 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold text-xl shadow group-hover:scale-110 transition-transform">!</div>
+              <span class="text-[11px] font-bold mt-1 text-brand-brown">Padamdam</span>
+            </div>
+            <div draggable="true" ondragstart="handleDragStart(event, 'pananong')" onclick="selectBantasCard('pananong')" id="card-pananong" class="bantas-palette-card cursor-pointer bg-amber-50 border-2 border-amber-300 hover:border-brand-brown p-2 rounded-xl flex flex-col items-center justify-center transition-all select-none group">
+              <div class="w-10 h-10 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-xl shadow group-hover:scale-110 transition-transform">?</div>
+              <span class="text-[11px] font-bold mt-1 text-brand-brown">Pananong</span>
+            </div>
+            <div draggable="true" ondragstart="handleDragStart(event, 'kudlit')" onclick="selectBantasCard('kudlit')" id="card-kudlit" class="bantas-palette-card cursor-pointer bg-amber-50 border-2 border-amber-300 hover:border-brand-brown p-2 rounded-xl flex flex-col items-center justify-center transition-all select-none group">
+              <div class="w-10 h-10 rounded-full bg-pink-600 text-white flex items-center justify-center font-bold text-xl shadow group-hover:scale-110 transition-transform">'</div>
+              <span class="text-[11px] font-bold mt-1 text-brand-brown">Kudlit</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-[#3B1D08] text-white p-3.5 rounded-2xl flex items-center justify-between gap-3 shadow-md border border-amber-500/40">
+          <div class="flex items-center gap-3">
+            <div id="activeAvatarBadge" class="w-10 h-10 rounded-full bg-amber-500 text-amber-950 flex items-center justify-center font-bold text-xl shadow flex-shrink-0">
+              .
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span id="activeAvatarName" class="font-fredoka text-amber-300 text-sm font-bold">Pumili ng Bantas</span>
+                <div id="miniSoundWave" class="hidden flex items-end gap-1 h-3">
+                  <div class="wave-bar w-1 bg-amber-400 rounded-full"></div>
+                  <div class="wave-bar w-1 bg-amber-300 rounded-full"></div>
+                  <div class="wave-bar w-1 bg-amber-400 rounded-full"></div>
+                </div>
+              </div>
+              <p id="activeAvatarSpeech" class="text-xs text-amber-100/90 font-medium line-clamp-2 leading-tight">Pindutin o i-drag ang alinmang bantas sa kahon sa itaas upang marinig ang boses at paliwanag nito sa tula.</p>
+            </div>
+          </div>
+          <button onclick="repeatCurrentSpeech()" class="w-9 h-9 rounded-xl bg-amber-900 hover:bg-amber-800 text-amber-200 flex items-center justify-center flex-shrink-0 shadow" title="Ulitin ang Boses">
+            <i class="fa-solid fa-volume-high text-sm"></i>
+          </button>
+        </div>
+
+        <div class="bg-white text-slate-800 rounded-3xl p-4 sm:p-6 border-2 border-amber-300 shadow-lg relative overflow-hidden">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b-2 border-amber-100 pb-3 mb-4">
+            <div>
+              <h2 class="font-fredoka text-lg sm:text-xl font-bold text-brand-brown" id="poemTitle">Saknong #1: Bayan Kong Mahal</h2>
+              <p class="text-xs text-slate-500">Punan ng tamang bantas ang bawat dulo ng taludtod at dulo ng saknong.</p>
+            </div>
+            <span class="text-xs font-bold text-brand-darkorange bg-amber-100 px-3 py-1 rounded-full w-fit">Grade 8 Panulaan</span>
+          </div>
+
+          <div id="poemContainer" class="bg-brand-lightcream p-4 sm:p-6 rounded-2xl border-2 border-amber-200 font-serif text-base sm:text-xl text-slate-800 leading-relaxed sm:leading-loose space-y-4 shadow-inner"></div>
+
+          <div class="flex items-center justify-between mt-5 pt-3 border-t border-amber-100">
+            <button onclick="prevStanza()" id="prevStanzaBtn" class="px-3 py-1.5 bg-slate-200 text-slate-700 font-bold text-xs rounded-xl hover:bg-slate-300 transition-all disabled:opacity-40">
+              <i class="fa-solid fa-arrow-left mr-1"></i> Nakaraang Saknong
+            </button>
+            <span class="text-xs font-bold text-brand-brown">Saknong <span id="currentStanzaNum">1</span> / <span id="totalStanzasNum">3</span></span>
+            <button onclick="nextStanza()" id="nextStanzaBtn" class="px-3 py-1.5 bg-brand-orange text-brand-darkbrown font-bold text-xs rounded-xl hover:bg-amber-400 transition-all">
+              Susunod na Saknong <i class="fa-solid fa-arrow-right ml-1"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= MODULE 5: RUBRIK SA PAGTATASA ================= -->
+      <div id="view-rubrik" class="tab-view hidden space-y-5">
+        <div class="flex items-center justify-between border-b border-amber-800/60 pb-3">
+          <div class="flex items-center space-x-2">
+            <div class="p-2 bg-amber-500/20 text-amber-400 rounded-lg">
+              <i class="fa-solid fa-list-check"></i>
+            </div>
+            <div>
+              <h2 class="heading-font text-xl font-bold text-amber-300">Rubrik sa Pagtatasa</h2>
+              <p class="text-xs text-amber-200/70">Pamantayan sa Pagmamarka ng Bantas sa Tula sa Akademya</p>
+            </div>
+          </div>
+          <button onclick="switchTab('hub')" class="text-xs text-amber-400 hover:underline">
+            <i class="fa-solid fa-arrow-left mr-1"></i>Bumalik
+          </button>
+        </div>
+
+        <div class="bg-[#3B1D08] p-4 sm:p-5 rounded-2xl border border-amber-700/40 space-y-4">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse min-w-[600px]">
+              <thead>
+                <tr class="bg-[#1C0A01] text-amber-300 border-b border-amber-700/50 text-xs heading-font">
+                  <th class="p-3 w-1/4">Krayterya</th>
+                  <th class="p-3 text-center bg-amber-950/60 text-amber-300">Napakahusay (4)</th>
+                  <th class="p-3 text-center">Mahusay (3)</th>
+                  <th class="p-3 text-center">Katamtaman (2)</th>
+                  <th class="p-3 text-center">Nangangailangan ng Pagpapabuti (1)</th>
+                </tr>
+              </thead>
+              <tbody class="text-xs text-amber-100/90 divide-y divide-amber-800/40">
+                <tr>
+                  <td class="p-3 font-bold text-amber-300 bg-[#280F02]">Dulo ng Taludtod</td>
+                  <td class="p-3 bg-amber-950/30">Lahat ng dulo ng taludtod ay may wastong kuwit (,), pananong (?), o padamdam (!).</td>
+                  <td class="p-3">1-2 taludtod lamang ang kulang sa bantas.</td>
+                  <td class="p-3">Maraming taludtod ang walang bantas.</td>
+                  <td class="p-3">Walang bantas sa alinmang taludtod.</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-amber-300 bg-[#280F02]">Dulo ng Saknong</td>
+                  <td class="p-3 bg-amber-950/30">Wasto ang tuldok (.), pananong (?), o padamdam (!) sa wakas ng bawat saknong.</td>
+                  <td class="p-3">May 1 saknong na nagtapos sa maling bantas.</td>
+                  <td class="p-3">Karamihan sa saknong ay walang bantas sa wakas.</td>
+                  <td class="p-3">Walang bantas sa wakas ng lahat ng saknong.</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-amber-300 bg-[#280F02]">Gitling (-) at Kudlit (')</td>
+                  <td class="p-3 bg-amber-950/30">Tumpak ang paggamit ng gitling sa inulit na salita at unlapi, at kudlit sa pag-aawas.</td>
+                  <td class="p-3">May 1-2 salita na nakalimutan ang gitling o kudlit.</td>
+                  <td class="p-3">Maraming salitang inulit ang walang gitling.</td>
+                  <td class="p-3">Maling-mali ang pagbabaybay at walang gitling/kudlit.</td>
+                </tr>
+                <tr>
+                  <td class="p-3 font-bold text-amber-300 bg-[#280F02]">Kapitalisasyon</td>
+                  <td class="p-3 bg-amber-950/30">Magsisimula sa malaking titik ang bawat taludtod.</td>
+                  <td class="p-3">May 1 taludtod na nagsimula sa maliit na titik.</td>
+                  <td class="p-3">Hindi pantay ang kapitalisasyon sa simula.</td>
+                  <td class="p-3">Lahat ng taludtod ay nagsimula sa maliit na titik.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="mt-4 p-4 bg-[#1C0A01] rounded-xl border border-amber-700/50 space-y-3">
+            <h4 class="heading-font font-bold text-sm text-amber-300 flex items-center">
+              <i class="fa-solid fa-calculator mr-2 text-amber-400"></i>Interactive Rubric Score Calculator:
+            </h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+              <div>
+                <label class="block text-amber-200 mb-1">Dulo ng Taludtod:</label>
+                <select id="score1" onchange="calculateRubricScore()" class="w-full bg-[#3B1D08] text-amber-200 border border-amber-700 p-2 rounded-lg">
+                  <option value="4">4 - Napakahusay</option>
+                  <option value="3">3 - Mahusay</option>
+                  <option value="2">2 - Katamtaman</option>
+                  <option value="1">1 - Pagpapabuti</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-amber-200 mb-1">Dulo ng Saknong:</label>
+                <select id="score2" onchange="calculateRubricScore()" class="w-full bg-[#3B1D08] text-amber-200 border border-amber-700 p-2 rounded-lg">
+                  <option value="4">4 - Napakahusay</option>
+                  <option value="3">3 - Mahusay</option>
+                  <option value="2">2 - Katamtaman</option>
+                  <option value="1">1 - Pagpapabuti</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-amber-200 mb-1">Gitling at Kudlit:</label>
+                <select id="score3" onchange="calculateRubricScore()" class="w-full bg-[#3B1D08] text-amber-200 border border-amber-700 p-2 rounded-lg">
+                  <option value="4">4 - Napakahusay</option>
+                  <option value="3">3 - Mahusay</option>
+                  <option value="2">2 - Katamtaman</option>
+                  <option value="1">1 - Pagpapabuti</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-amber-200 mb-1">Kapitalisasyon:</label>
+                <select id="score4" onchange="calculateRubricScore()" class="w-full bg-[#3B1D08] text-amber-200 border border-amber-700 p-2 rounded-lg">
+                  <option value="4">4 - Napakahusay</option>
+                  <option value="3">3 - Mahusay</option>
+                  <option value="2">2 - Katamtaman</option>
+                  <option value="1">1 - Pagpapabuti</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="pt-2 border-t border-amber-800/50 flex items-center justify-between">
+              <span class="text-xs text-amber-200 font-semibold">Kabuuan: <strong id="rubricTotalScore" class="text-amber-400 text-sm">16 / 16 (100%)</strong></span>
+              <span id="rubricGradeBadge" class="px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-lg text-xs font-bold border border-emerald-500/30">Napakahusay (A+)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Bottom Mobile Navigation Bar -->
+    <nav class="bg-[#1A0C02] border-t border-amber-800/60 px-2 py-2 flex items-center justify-around z-40">
+      <button onclick="switchTab('hub')" class="nav-item flex flex-col items-center text-amber-400 hover:text-amber-200 text-[10px] font-semibold py-1 px-2 rounded-lg transition">
+        <i class="fa-solid fa-house text-base mb-0.5"></i>
+        <span>Hub</span>
+      </button>
+      <button onclick="switchTab('scan')" class="nav-item flex flex-col items-center text-amber-200/70 hover:text-amber-300 text-[10px] font-semibold py-1 px-2 rounded-lg transition">
+        <i class="fa-solid fa-camera-retro text-base mb-0.5"></i>
+        <span>Scan</span>
+      </button>
+      <button onclick="switchTab('gabay')" class="nav-item flex flex-col items-center text-amber-200/70 hover:text-amber-300 text-[10px] font-semibold py-1 px-2 rounded-lg transition">
+        <i class="fa-solid fa-book-open-reader text-base mb-0.5"></i>
+        <span>Gabay</span>
+      </button>
+      <button onclick="switchTab('type')" class="nav-item flex flex-col items-center text-amber-200/70 hover:text-amber-300 text-[10px] font-semibold py-1 px-2 rounded-lg transition">
+        <i class="fa-solid fa-pen-to-square text-base mb-0.5"></i>
+        <span>I-Type</span>
+      </button>
+      <button onclick="switchTab('pagsasanay')" class="nav-item flex flex-col items-center text-amber-200/70 hover:text-amber-300 text-[10px] font-semibold py-1 px-2 rounded-lg transition">
+        <i class="fa-solid fa-gamepad text-base mb-0.5"></i>
+        <span>Subok</span>
+      </button>
+      <button onclick="switchTab('rubrik')" class="nav-item flex flex-col items-center text-amber-200/70 hover:text-amber-300 text-[10px] font-semibold py-1 px-2 rounded-lg transition">
+        <i class="fa-solid fa-list-check text-base mb-0.5"></i>
+        <span>Rubrik</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Academic Info Modal -->
+  <div id="infoModal" class="hidden fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
+    <div class="bg-[#3B1D08] max-w-md w-full p-6 rounded-2xl border border-amber-600/50 space-y-4 shadow-2xl relative">
+      <button onclick="closeInfoModal()" class="absolute top-3 right-3 text-amber-400 hover:text-amber-200 text-lg">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="flex items-center space-x-3">
+        <div class="p-2.5 bg-amber-500/20 text-amber-400 rounded-xl">
+          <i class="fa-solid fa-graduation-cap text-xl"></i>
+        </div>
+        <div>
+          <h3 class="heading-font font-bold text-amber-300 text-base">Tungkol sa BANTAS TULAKIT</h3>
+          <p class="text-xs text-amber-200/70">Pang-Akademikong Proyekto sa Filipino • Grade 8</p>
+        </div>
+      </div>
+      <p class="text-xs text-amber-100/80 leading-relaxed">
+        Ang <strong>Bantas Tulakit</strong> ay isang makabagong kasangkapang pampagtuturo at pampagkatuto na idinisenyo upang gabayan ang mga mag-aaral at manunulat sa wastong paggamit ng mga bantas (kuwit, tuldok, gitling, kudlit, panipi, etc.) sa pagsulat ng tulang Filipino ayon sa pamantayan ng KWF at Akademya.
+      </p>
+      <button onclick="closeInfoModal()" class="w-full py-2 bg-amber-500 hover:bg-amber-400 text-amber-950 font-bold text-xs rounded-xl transition">
+        Naiintindihan Ko
+      </button>
+    </div>
+  </div>
+
+  <!-- VICTORY CELEBRATION MODAL FOR INTERACTIVE PAGSASANAY -->
+  <div id="victoryModal" class="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50 hidden opacity-0 transition-opacity duration-300">
+    <div class="bg-[#3B1D08] rounded-3xl p-6 sm:p-8 max-w-md w-full text-center border-4 border-amber-500 shadow-2xl transform scale-95 transition-transform duration-300" id="victoryModalCard">
+      <div class="w-20 h-20 bg-amber-500 rounded-full flex items-center justify-center text-amber-950 text-4xl mx-auto mb-4 shadow-lg border-4 border-amber-200 animate-bounce">
+        <i class="fa-solid fa-trophy"></i>
+      </div>
+
+      <h3 class="heading-font text-2xl sm:text-3xl font-bold text-amber-300 mb-1">Napakahusay!</h3>
+      <p class="text-sm font-semibold text-amber-200 mb-4">Kumpleto at Wasto ang Lahat ng Bantas sa Tula!</p>
+
+      <div class="bg-[#280F02] p-4 rounded-2xl border border-amber-700/50 mb-5 text-xs text-amber-100 space-y-2">
+        <p class="font-bold text-amber-300">Nakuha mong Puntos: <span id="finalScore" class="text-amber-400 text-base">0</span></p>
+        <p>Naipakita mo ang malalim na pag-unawa sa wastong paglalagay ng bantas sa dulo ng bawat taludtod at saknong sa panulaan.</p>
+      </div>
+
+      <div class="flex items-center justify-center gap-3">
+        <button onclick="closeVictoryModal()" class="px-5 py-2.5 bg-gradient-to-r from-amber-500 to-orange-500 text-amber-950 font-extrabold text-xs rounded-xl hover:from-amber-400 hover:to-orange-400 shadow-md transition-all">
+          Ipagpatuloy ang Pagsasanay
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC ENGINE -->
+  <script>
+    /* ================= PRESET POEMS DATA ================= */
+    const PRESET_POEMS = {
+      guryon: `Ikitab mo ang guryon sa hanging malamig,
+hayaan mong lumipad sa dagat ng langit;
+ang tali ay pigilan kapagka humihigpit,
+babaan mo naman kapag sumusumpit.
+
+Ang buhay ay guryon marupok at iba-iba,
+sa hampas ng hangin dapat mag-isa,
+makipaglaban ka nang may pag-asa,
+bayan koy babangon sa dulo ng dusa.`,
+
+      langit: `Ako'y nakulong sa isang dipang langit,
+sa likod ng bakal na pinto at rehas,
+bawat gabi araw ako ay nag-iisa,
+sa gitna ng dilim at kawalan ng pag-asa.
+
+Kung ako'y lumuha sa gitna ng dusa,
+ang aking panalangin ay para sa bayan,
+magisa akong nag-aral sa aking higaan,
+makaDiyos na puso ang aking gabay.`,
+
+      bayan: `Ang bayan ko'y tanging perlas sa silangan,
+sa ganda at dilag siyay hinahangaan;
+bawat gabi-gabi akoy nagdarasal,
+tagaMaynila man o mula sa kanayunan.
+
+Bayan koy malaya sa dulo ng araw,
+pag-asa ng bukas ay muling sisikat.`,
+
+      kabata: `Ang hindi magmahal sa sariling wika,
+masahol pa sa hayop at malansang isda,
+kaya ang marapat ay ating pagyamaning kusa,
+tulad ng sa inang sa atin ay nagpala.`
+    };
+
+    /* ================= TAB NAVIGATION LOGIC ================= */
+    function switchTab(tabId) {
+      if (typeof stopSpeech === 'function') stopSpeech();
+      document.querySelectorAll('.tab-view').forEach(view => {
+        view.classList.add('hidden');
+      });
+      const targetView = document.getElementById(`view-${tabId}`);
+      if (targetView) {
+        targetView.classList.remove('hidden');
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* ================= MODULE 1: POEM CHECKER ENGINE ================= */
+    function loadPresetPoem(key) {
+      if (!key || !PRESET_POEMS[key]) return;
+      document.getElementById('poemInput').value = PRESET_POEMS[key];
+      runPoemCheck();
+    }
+
+    function clearPoemInput() {
+      document.getElementById('poemInput').value = '';
+      document.getElementById('checkResultsContainer').classList.add('hidden');
+      document.getElementById('presetSelect').value = '';
+    }
+
+    function runPoemCheck() {
+      const rawText = document.getElementById('poemInput').value;
+      if (!rawText || !rawText.trim()) {
+        alert('Mangyaring maglagay o mag-type ng tula bago magsuri.');
+        return;
+      }
+
+      const results = analyzePoemText(rawText);
+      displayCheckResults(results, rawText);
+    }
+
+    function analyzePoemText(text) {
+      const rawStanzas = text.split(/\n\s*\n/);
+      let totalLines = 0;
+      let linesWithIssues = 0;
+      let totalChecks = 0;
+      let passedChecks = 0;
+
+      const analyzedStanzas = rawStanzas.map((stanzaStr, sIdx) => {
+        const rawLines = stanzaStr.split('\n').filter(l => l.trim().length > 0);
+        const stanzaLineCount = rawLines.length;
+
+        const lines = rawLines.map((lineStr, lIdx) => {
+          totalLines++;
+          const lineTrim = lineStr.trim();
+          const isLastLineOfStanza = (lIdx === stanzaLineCount - 1);
+          const issues = [];
+          let corrected = lineTrim;
+
+          // 1. Capitalization check
+          const firstChar = lineTrim.charAt(0);
+          if (firstChar && firstChar !== firstChar.toUpperCase() && /[a-z]/i.test(firstChar)) {
+            issues.push({
+              type: 'Kapitalisasyon',
+              severity: 'warning',
+              msg: 'Ang taludtod sa tula ay dapat magsimula sa malaking titik.',
+              fix: firstChar.toUpperCase() + lineTrim.slice(1)
+            });
+            totalChecks++;
+          } else {
+            totalChecks++;
+            passedChecks++;
+          }
+
+          // Smart Question & Exclamation Detection
+          const isQuestionText = /\b(sino|ano|kailan|saan|bakit|paano|alin|kanino|gaano|ilan|nasaan|baga)\b/i.test(lineTrim) || lineTrim.endsWith('?');
+          const isExclamationText = /\b(mabuhay|naku|aray|saklolo|aba)\b/i.test(lineTrim) || lineTrim.endsWith('!');
+
+          // 2. Line / Stanza End Punctuation Check
+          const lastChar = lineTrim.charAt(lineTrim.length - 1);
+          const terminalPunct = ['.', '!', '?', '…'];
+          const linePunct = [',', ';', ':', '—', '-'];
+
+          if (isQuestionText) {
+            if (lastChar !== '?') {
+              issues.push({
+                type: 'Pananong sa Dulo ng Taludtod',
+                severity: 'warning',
+                msg: 'Ang taludtod ay nagtatanong, kaya dapat magtapos sa pananong (?).',
+                fix: (linePunct.includes(lastChar) || lastChar === '.' ? lineTrim.slice(0, -1) : lineTrim) + '?'
+              });
+              totalChecks++;
+            } else {
+              totalChecks++;
+              passedChecks++;
+            }
+          } else if (isExclamationText) {
+            if (lastChar !== '!') {
+              issues.push({
+                type: 'Padamdam sa Dulo ng Taludtod',
+                severity: 'warning',
+                msg: 'Ang taludtod ay nagpapahayag ng matinding emosyon, kaya dapat magtapos sa padamdam (!).',
+                fix: (linePunct.includes(lastChar) || lastChar === '.' ? lineTrim.slice(0, -1) : lineTrim) + '!'
+              });
+              totalChecks++;
+            } else {
+              totalChecks++;
+              passedChecks++;
+            }
+          } else if (isLastLineOfStanza) {
+            if (!terminalPunct.includes(lastChar)) {
+              if (linePunct.includes(lastChar)) {
+                issues.push({
+                  type: 'Bantas sa Dulo ng Saknong',
+                  severity: 'error',
+                  msg: `Mali ang bantas '${lastChar}' sa wakas ng Saknong ${sIdx + 1}. Dapat magtapos sa tuldok (.), pananong (?), o padamdam (!).`,
+                  fix: lineTrim.slice(0, -1) + '.'
+                });
+              } else {
+                issues.push({
+                  type: 'Bantas sa Dulo ng Saknong',
+                  severity: 'error',
+                  msg: `Kulang sa bantas sa wakas ng Saknong ${sIdx + 1}. Maglagay ng tuldok (.), pananong (?), o padamdam (!).`,
+                  fix: lineTrim + '.'
+                });
+              }
+              totalChecks++;
+            } else {
+              totalChecks++;
+              passedChecks++;
+            }
+          } else {
+            // Inside stanza non-last line
+            if (lastChar === '.') {
+              issues.push({
+                type: 'Bantas sa Dulo ng Taludtod',
+                severity: 'warning',
+                msg: `May tuldok sa gitna ng saknong. Karaniwang kuwit (,) o tuldok-kuwit (;) ang ginagamit kung tuloy pa ang kaisipan.`,
+                fix: lineTrim.slice(0, -1) + ','
+              });
+              totalChecks++;
+            } else if (!linePunct.includes(lastChar) && !['”', '"', "'", '!', '?'].includes(lastChar)) {
+              issues.push({
+                type: 'Bantas sa Dulo ng Taludtod',
+                severity: 'warning',
+                msg: `Kulang sa bantas ang dulo ng taludtod. Inirerekomenda ang paggamit ng kuwit (,).`,
+                fix: lineTrim + ','
+              });
+              totalChecks++;
+            } else {
+              totalChecks++;
+              passedChecks++;
+            }
+          }
+
+          // 3. Word-level Hyphenation & Kudlit Checks
+          const prefixVowelRules = [
+            { wrong: /\bpagasa\b/gi, right: 'pag-asa' },
+            { wrong: /\bmagisa\b/gi, right: 'mag-isa' },
+            { wrong: /\bnagaral\b/gi, right: 'nag-aral' },
+            { wrong: /\bnagiisa\b/gi, right: 'nag-iisa' },
+            { wrong: /\barawgabi\b/gi, right: 'araw-gabi' },
+            { wrong: /\baraw gabi\b/gi, right: 'araw-gabi' },
+            { wrong: /\bgabigabi\b/gi, right: 'gabi-gabi' },
+            { wrong: /\bgabi gabi\b/gi, right: 'gabi-gabi' },
+            { wrong: /\bmagkakaugnay\b/gi, right: 'magkaka-ugnay' },
+            { wrong: /\bmagkaka ugnay\b/gi, right: 'magkaka-ugnay' },
+            { wrong: /\bmakaDiyos\b/gi, right: 'maka-Diyos' },
+            { wrong: /\bmakadiyos\b/gi, right: 'maka-Diyos' },
+            { wrong: /\btagaMaynila\b/gi, right: 'taga-Maynila' }
+          ];
+
+          prefixVowelRules.forEach(r => {
+            if (r.wrong.test(lineTrim)) {
+              issues.push({
+                type: 'Gitling sa Unlapi / Salita',
+                severity: 'error',
+                msg: `Ang salita ay dapat lagyan ng gitling: "${r.right}".`,
+                fix: r.right
+              });
+              totalChecks++;
+            }
+          });
+
+          const kudlitRules = [
+            { wrong: /\bakoy\b/gi, right: "ako'y" },
+            { wrong: /\bsiyay\b/gi, right: "siya'y" },
+            { wrong: /\bkamiy\b/gi, right: "kami'y" },
+            { wrong: /\bnamiy\b/gi, right: "nami'y" },
+            { wrong: /\bpusot\b/gi, right: "puso't" },
+            { wrong: /\bbayankoy\b/gi, right: "bayan ko'y" },
+            { wrong: /\bbayan koy\b/gi, right: "bayan ko'y" }
+          ];
+
+          kudlitRules.forEach(r => {
+            if (r.wrong.test(lineTrim)) {
+              issues.push({
+                type: 'Kudlit (\') sa Salita',
+                severity: 'error',
+                msg: `Kulang sa kudlit (') sa pag-aawas ng titik: "${r.right}".`,
+                fix: r.right
+              });
+              totalChecks++;
+            }
+          });
+
+          // Construct corrected line
+          let lineFixed = lineTrim;
+
+          if (isQuestionText) {
+            if (lineFixed.charAt(lineFixed.length - 1) !== '?') {
+              if (linePunct.includes(lineFixed.charAt(lineFixed.length - 1)) || lineFixed.charAt(lineFixed.length - 1) === '.') {
+                lineFixed = lineFixed.slice(0, -1) + '?';
+              } else {
+                lineFixed = lineFixed + '?';
+              }
+            }
+          } else if (isExclamationText) {
+            if (lineFixed.charAt(lineFixed.length - 1) !== '!') {
+              if (linePunct.includes(lineFixed.charAt(lineFixed.length - 1)) || lineFixed.charAt(lineFixed.length - 1) === '.') {
+                lineFixed = lineFixed.slice(0, -1) + '!';
+              } else {
+                lineFixed = lineFixed + '!';
+              }
+            }
+          } else if (isLastLineOfStanza) {
+            if (!terminalPunct.includes(lineFixed.charAt(lineFixed.length - 1))) {
+              if (linePunct.includes(lineFixed.charAt(lineFixed.length - 1))) {
+                lineFixed = lineFixed.slice(0, -1) + '.';
+              } else {
+                lineFixed = lineFixed + '.';
+              }
+            }
+          } else {
+            if (lineFixed.charAt(lineFixed.length - 1) === '.') {
+              lineFixed = lineFixed.slice(0, -1) + ',';
+            } else if (!linePunct.includes(lineFixed.charAt(lineFixed.length - 1)) && !['”', '"', "'", '!', '?'].includes(lineFixed.charAt(lineFixed.length - 1))) {
+              lineFixed = lineFixed + ',';
+            }
+          }
+
+          lineFixed = lineFixed.charAt(0).toUpperCase() + lineFixed.slice(1);
+          prefixVowelRules.concat(kudlitRules).forEach(r => {
+            lineFixed = lineFixed.replace(r.wrong, r.right);
+          });
+
+          if (issues.length > 0) linesWithIssues++;
+
+          return {
+            original: lineTrim,
+            corrected: lineFixed,
+            issues: issues,
+            isLastLineOfStanza: isLastLineOfStanza
+          };
+        });
+
+        return { stanzaIndex: sIdx, lines: lines };
+      });
+
+      const score = Math.max(0, Math.round(((totalChecks - linesWithIssues) / Math.max(totalChecks, 1)) * 100));
+
+      return { stanzas: analyzedStanzas, totalLines, linesWithIssues, score };
+    }
+
+    function displayCheckResults(data, rawText) {
+      const container = document.getElementById('checkResultsContainer');
+      const scoreBadge = document.getElementById('scoreBadge');
+      const scoreMsg = document.getElementById('scoreMessage');
+      const lineList = document.getElementById('lineResultsList');
+      const rawPreview = document.getElementById('rawPoemPreview');
+      const correctedPreview = document.getElementById('correctedPoemPreview');
+
+      container.classList.remove('hidden');
+      scoreBadge.innerText = `${data.score}%`;
+
+      if (data.score >= 90) {
+        scoreBadge.className = "w-16 h-16 rounded-full bg-emerald-500 text-emerald-950 font-black text-xl flex items-center justify-center border-4 border-emerald-300 shadow-inner";
+        scoreMsg.innerText = "Napakahusay! Halos walang mali sa bantas at pagbabaybay ng tula.";
+      } else if (data.score >= 70) {
+        scoreBadge.className = "w-16 h-16 rounded-full bg-amber-500 text-amber-950 font-black text-xl flex items-center justify-center border-4 border-amber-300 shadow-inner";
+        scoreMsg.innerText = "Mahusay! May ilang kaunting bantas lamang na kailangang iwasto.";
+      } else {
+        scoreBadge.className = "w-16 h-16 rounded-full bg-rose-500 text-rose-950 font-black text-xl flex items-center justify-center border-4 border-rose-300 shadow-inner";
+        scoreMsg.innerText = "Nangangailangan ng Pagpapabuti. Pakisuri ang mga ulat sa ibaba.";
+      }
+
+      let html = '';
+      let fullCorrectedText = '';
+
+      data.stanzas.forEach((stanza, sIdx) => {
+        html += `<div class="p-3 bg-[#280F02] rounded-xl border border-amber-800/40 space-y-2">`;
+        html += `<span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider">Saknong ${sIdx + 1}:</span>`;
+
+        stanza.lines.forEach((line) => {
+          fullCorrectedText += line.corrected + '\n';
+          const hasIssues = line.issues.length > 0;
+
+          html += `
+            <div class="p-2.5 rounded-lg ${hasIssues ? 'bg-[#361607] border border-amber-600/40' : 'bg-emerald-950/30 border border-emerald-800/30'} flex flex-col space-y-1">
+              <div class="flex items-center justify-between text-xs">
+                <span class="font-mono text-amber-100 ${hasIssues ? 'text-amber-200' : 'text-emerald-200'}">
+                  ${line.original}
+                </span>
+                <span class="text-[10px] px-2 py-0.5 rounded ${hasIssues ? 'bg-amber-500/20 text-amber-300' : 'bg-emerald-500/20 text-emerald-300'} font-bold">
+                  ${hasIssues ? 'May Iwawasto' : 'Wasto 🟢'}
+                </span>
+              </div>
+          `;
+
+          if (hasIssues) {
+            line.issues.forEach(issue => {
+              html += `
+                <div class="text-[11px] text-amber-200 flex items-start space-x-1.5 pt-1">
+                  <i class="fa-solid fa-triangle-exclamation text-amber-400 mt-0.5"></i>
+                  <div>
+                    <strong>[${issue.type}]:</strong> ${issue.msg}
+                    <div class="text-[10px] text-emerald-400 font-mono mt-0.5">Iminumungkahi: "${issue.fix}"</div>
+                  </div>
+                </div>
+              `;
+            });
+          }
+          html += `</div>`;
+        });
+        html += `</div>`;
+        fullCorrectedText += '\n';
+      });
+
+      lineList.innerHTML = html;
+      rawPreview.innerText = rawText;
+      correctedPreview.innerText = fullCorrectedText.trim();
+    }
+
+    function copyCorrectedPoem() {
+      const correctedText = document.getElementById('correctedPoemPreview').innerText;
+      if (!correctedText) return;
+
+      const tempTextArea = document.createElement('textarea');
+      tempTextArea.value = correctedText;
+      document.body.appendChild(tempTextArea);
+      tempTextArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempTextArea);
+
+      alert('Naikopya na ang iniwastong tula sa iyong clipboard!');
+    }
+
+    /* ================= MODULE 2: SCANNER SIMULATOR ================= */
+    function simulateScan(poemKey) {
+      const scanLine = document.getElementById('scanLine');
+      const progressContainer = document.getElementById('ocrProgressContainer');
+      const progressBar = document.getElementById('ocrProgressBar');
+      const percentText = document.getElementById('ocrPercent');
+      const statusText = document.getElementById('ocrStatusText');
+
+      scanLine.classList.remove('hidden');
+      progressContainer.classList.remove('hidden');
+
+      let progress = 0;
+      statusText.innerText = "Nagsa-scan ng imahe at bantas...";
+
+      const interval = setInterval(() => {
+        progress += 20;
+        progressBar.style.width = `${progress}%`;
+        percentText.innerText = `${progress}%`;
+
+        if (progress >= 100) {
+          clearInterval(interval);
+          setTimeout(() => {
+            scanLine.classList.add('hidden');
+            progressContainer.classList.add('hidden');
+            progressBar.style.width = '0%';
+            switchTab('type');
+            loadPresetPoem(poemKey);
+            alert('Awtomatikong na-scan ang tula at nailipat sa Surian Engine!');
+          }, 400);
+        }
+      }, 250);
+    }
+
+    function handleImageUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const preview = document.getElementById('scannedImagePreview');
+        const prompt = document.getElementById('scanPrompt');
+        preview.src = e.target.result;
+        preview.classList.remove('hidden');
+        prompt.classList.add('hidden');
+        simulateScan('guryon');
+      };
+      reader.readAsDataURL(file);
+    }
+
+    /* ================= MODULE 3: GABAY FILTER ================= */
+    function filterRule(category) {
+      document.querySelectorAll('.rule-btn').forEach(btn => {
+        btn.classList.remove('bg-amber-500', 'text-amber-950', 'font-bold');
+        btn.classList.add('bg-[#3B1D08]', 'text-amber-300');
+      });
+      event.target.classList.add('bg-amber-500', 'text-amber-950', 'font-bold');
+      event.target.classList.remove('bg-[#3B1D08]', 'text-amber-300');
+
+      const cards = document.querySelectorAll('.rule-card');
+      cards.forEach(card => {
+        if (category === 'all' || card.classList.contains(`category-${category}`)) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    }
+
+    /* ================= MODULE 4: INTEGRATED INTERACTIVE PAGSASANAY ================= */
+    const bantasInfo = {
+      tuldok: {
+        name: "Tuldok (.)",
+        symbol: ".",
+        colorClass: "bg-red-500",
+        introSpeech: "Ako si Tuldok! Ako ang nagbibigay ng ganap na hinto sa dulo ng huling taludtod sa saknong ng tula.",
+        correctSpeech: "Magaling! Ako ang Tuldok, nagbibigay ng ganap na hinto sa dulo ng saknong!",
+        wrongSpeech: "Ops! Hindi pa ako ang Tuldok dito. Tingnan kung kailangan pa ng tuloy-tuloy na pagbasa."
+      },
+      kuwit: {
+        name: "Kuwit (,)",
+        symbol: ",",
+        colorClass: "bg-amber-500",
+        introSpeech: "Ako si Kuwit! Ako ang nagbibigay ng saglit na paghinga sa dulo ng taludtod sa loob ng saknong.",
+        correctSpeech: "Tumpak! Ako ang Kuwit, nagbibigay ng saglit na paghinga sa dulo ng taludtod!",
+        wrongSpeech: "Hindi pa ako ang Kuwit dito. Suriin kung matinding damdamin, tanong, o ganap na hinto ang kailangan."
+      },
+      panipi: {
+        name: "Panipi (“ ”)",
+        symbol: "“ ”",
+        colorClass: "bg-emerald-600",
+        introSpeech: "Ako si Panipi! Ako ang nag-iingat sa mga direktang pahayag ng tauhan sa tula.",
+        correctSpeech: "Husay! Ako ang Panipi, ginagamit sa direktang pahayag ng nagsasalita sa tula!",
+        wrongSpeech: "Hindi ako ang Panipi rito. Gamitin lamang ako kapag may direktang salitang binibigkas."
+      },
+      gitling: {
+        name: "Gitling (-)",
+        symbol: "-",
+        colorClass: "bg-blue-500",
+        introSpeech: "Ako si Gitling! Ako ang nag-uugnay sa mga salitang inuulit upang ingatan ang ritmo.",
+        correctSpeech: "Magaling! Ako ang Gitling, pinag-uugnay ko ang salitang inuulit sa linyang ito!",
+        wrongSpeech: "Mali pa rin. Ang Gitling ay ginagamit sa pagitan ng mga salitang inuulit o tambalan sa loob ng linya."
+      },
+      padamdam: {
+        name: "Padamdam (!)",
+        symbol: "!",
+        colorClass: "bg-purple-600",
+        introSpeech: "Ako si Padamdam! Ako ang nagpapahayag ng matinding emosyon at sigaw sa dulo ng taludtod!",
+        correctSpeech: "Mabuhay! Ako ang Padamdam, nagpapadama ng masidhing emosyon sa dulo ng taludtod!",
+        wrongSpeech: "Ops! Hindi ako ang Padamdam dito. Ang padamdam ay para sa matinding emosyon at sigaw."
+      },
+      pananong: {
+        name: "Pananong (?)",
+        symbol: "?",
+        colorClass: "bg-indigo-600",
+        introSpeech: "Ako si Pananong! Ako ang nag-iiwan ng retorikal na tanong sa dulo ng taludtod.",
+        correctSpeech: "Tumpak! Ako ang Pananong, nag-iiwan ako ng tanong sa dulo ng taludtod na ito!",
+        wrongSpeech: "Hindi ako ang Pananong dito. Gamitin lamang ako sa dulo ng taludtod na nagtatanong."
+      },
+      kudlit: {
+        name: "Kudlit (')",
+        symbol: "'",
+        colorClass: "bg-pink-600",
+        introSpeech: "Ako si Kudlit! Ako ang pumapalit sa nawawalang titik sa loob ng salita upang ingatan ang sukat.",
+        correctSpeech: "Napakagaling! Ako ang Kudlit, pinalitan ko ang nawalang titik upang mapanatili ang sukat ng tula!",
+        wrongSpeech: "Mali pa. Ang Kudlit ay inilalagay sa loob ng salita kapag may kinakaltas na titik tulad ng ako'y o puso't."
+      }
+    };
+
+    const stanzasData = [
+      {
+        title: "Saknong #1: Bayan Kong Mahal",
+        lines: [
+          {
+            parts: [
+              { text: "Bayan nami" },
+              { target: "kudlit", hint: "Kudlit sa nami'y" },
+              { text: "y mayaman sa kultura" }
+            ],
+            endTarget: "kuwit"
+          },
+          {
+            parts: [{ text: "Mga tula at awit ay puno ng sigla" }],
+            endTarget: "kuwit"
+          },
+          {
+            parts: [{ text: "Sino kaya ang hindi magmamahal dito" }],
+            endTarget: "pananong"
+          },
+          {
+            parts: [{ text: "Ito ang ating tahanan at pag-asa" }],
+            endTarget: "tuldok"
+          }
+        ]
+      },
+      {
+        title: "Saknong #2: Dangal ng Bayan",
+        lines: [
+          {
+            parts: [
+              { target: "panipi", hint: "Panipi sa simula" },
+              { text: "Giting at tapang" },
+              { target: "panipi", hint: "Panipi sa dulo" },
+              { text: "ang alay sa bayan" }
+            ],
+            endTarget: "kuwit"
+          },
+          {
+            parts: [
+              { text: "Puso" },
+              { target: "kudlit", hint: "Kudlit sa puso't" },
+              { text: "t kaluluwa ay magkaka" },
+              { target: "gitling", hint: "Gitling sa magkaka-ugnay" },
+              { text: "ugnay" }
+            ],
+            endTarget: "kuwit"
+          },
+          {
+            parts: [{ text: "Mabuhay ang Inang Bayan" }],
+            endTarget: "padamdam"
+          },
+          {
+            parts: [{ text: "Magpakailanman ay ating itataguyod" }],
+            endTarget: "tuldok"
+          }
+        ]
+      },
+      {
+        title: "Saknong #3: Sikap at Pag-asa",
+        lines: [
+          {
+            parts: [
+              { text: "Araw" },
+              { target: "gitling", hint: "Gitling sa araw-gabi" },
+              { text: "gabi ay nag-aaral nang mabuti" }
+            ],
+            endTarget: "kuwit"
+          },
+          {
+            parts: [
+              { text: "Siya" },
+              { target: "kudlit", hint: "Kudlit sa siya'y" },
+              { text: "y nangarap maging gabay ng lipunan" }
+            ],
+            endTarget: "kuwit"
+          },
+          {
+            parts: [{ text: "Ano kaya ang kanyang kinabukasan" }],
+            endTarget: "pananong"
+          },
+          {
+            parts: [{ text: "Tiyak na magtatagumpay sa buhay" }],
+            endTarget: "tuldok"
+          }
+        ]
+      }
+    ];
+
+    let currentStanzaIndex = 0;
+    let selectedBantasKey = null;
+    let draggedBantasKey = null;
+    let userAnswers = {};
+    let totalSlotsCount = 0;
+    let synth = window.speechSynthesis;
+    let currentSpeechText = "";
+
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    function playSoundEffect(type) {
+      try {
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        if (type === 'correct') {
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(659.25, audioCtx.currentTime + 0.15);
+          osc.frequency.exponentialRampToValueAtTime(783.99, audioCtx.currentTime + 0.3);
+          gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
+          osc.start();
+          osc.stop(audioCtx.currentTime + 0.4);
+        } else if (type === 'wrong') {
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(220, audioCtx.currentTime);
+          osc.frequency.setValueAtTime(180, audioCtx.currentTime + 0.15);
+          gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+          osc.start();
+          osc.stop(audioCtx.currentTime + 0.3);
+        }
+      } catch(e) {}
+    }
+
+    function renderStanza(index) {
+      currentStanzaIndex = index;
+      const stanza = stanzasData[index];
+      userAnswers = {};
+      totalSlotsCount = 0;
+
+      document.getElementById('poemTitle').textContent = stanza.title;
+      document.getElementById('currentStanzaNum').textContent = index + 1;
+      document.getElementById('totalStanzasNum').textContent = stanzasData.length;
+      document.getElementById('prevStanzaBtn').disabled = (index === 0);
+      document.getElementById('nextStanzaBtn').disabled = (index === stanzasData.length - 1);
+
+      const container = document.getElementById('poemContainer');
+      container.innerHTML = '';
+
+      stanza.lines.forEach((line, lineIdx) => {
+        const lineDiv = document.createElement('div');
+        lineDiv.className = "flex flex-wrap items-center gap-1.5 sm:gap-2 border-b border-amber-200/50 pb-2 sm:pb-3";
+
+        line.parts.forEach((part, partIdx) => {
+          if (part.text) {
+            const textSpan = document.createElement('span');
+            textSpan.textContent = part.text;
+            lineDiv.appendChild(textSpan);
+          }
+          if (part.target) {
+            const slotId = `slot-${lineIdx}-part-${partIdx}`;
+            totalSlotsCount++;
+            const slot = createTargetSlot(slotId, part.target, false);
+            lineDiv.appendChild(slot);
+          }
+        });
+
+        if (line.endTarget) {
+          const endSlotId = `slot-${lineIdx}-end`;
+          totalSlotsCount++;
+          const endSlot = createTargetSlot(endSlotId, line.endTarget, true);
+          lineDiv.appendChild(endSlot);
+        }
+
+        container.appendChild(lineDiv);
+      });
+
+      updateScoreDisplay();
+    }
+
+    function createTargetSlot(slotId, targetBantas, isEndSlot) {
+      const targetSlot = document.createElement('div');
+      targetSlot.id = slotId;
+      targetSlot.dataset.slotId = slotId;
+      targetSlot.dataset.targetBantas = targetBantas;
+
+      if (isEndSlot) {
+        targetSlot.className = "target-slot min-w-[36px] h-9 px-2 bg-amber-100/80 border-2 border-dashed border-brand-darkorange rounded-xl flex items-center justify-center cursor-pointer transition-all hover:border-brand-brown shadow-sm font-sans font-bold text-sm text-brand-brown ml-auto sm:ml-1";
+        targetSlot.innerHTML = `<span class="opacity-60 text-xs">[ ${bantasInfo[targetBantas].symbol} ]</span>`;
+      } else {
+        targetSlot.className = "target-slot min-w-[32px] h-8 px-1.5 bg-white border-2 border-dashed border-amber-400 rounded-lg flex items-center justify-center cursor-pointer transition-all hover:border-brand-darkorange shadow-sm font-sans font-bold text-xs text-slate-400";
+        targetSlot.innerHTML = `<span class="opacity-40">[ ? ]</span>`;
+      }
+
+      targetSlot.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        targetSlot.classList.add('target-hover');
+      });
+      targetSlot.addEventListener('dragleave', () => {
+        targetSlot.classList.remove('target-hover');
+      });
+      targetSlot.addEventListener('drop', (e) => {
+        e.preventDefault();
+        targetSlot.classList.remove('target-hover');
+        if (draggedBantasKey) {
+          attemptPlaceBantas(targetSlot, draggedBantasKey);
+        }
+      });
+
+      targetSlot.addEventListener('click', () => {
+        if (selectedBantasKey) {
+          attemptPlaceBantas(targetSlot, selectedBantasKey);
+        } else {
+          speakText("Pumili muna ng bantas sa kahon sa itaas bago i-tap ang patlang!");
+        }
+      });
+
+      return targetSlot;
+    }
+
+    function selectBantasCard(key) {
+      selectedBantasKey = key;
+      const data = bantasInfo[key];
+
+      document.querySelectorAll('.bantas-palette-card').forEach(card => {
+        card.classList.remove('bantas-card-active');
+      });
+      const activeCard = document.getElementById(`card-${key}`);
+      if (activeCard) activeCard.classList.add('bantas-card-active');
+
+      const avatar = document.getElementById('activeAvatarBadge');
+      avatar.textContent = data.symbol;
+      avatar.className = `w-10 h-10 rounded-full ${data.colorClass} text-white flex items-center justify-center font-bold text-xl shadow flex-shrink-0`;
+
+      document.getElementById('activeAvatarName').textContent = data.name;
+      document.getElementById('activeAvatarSpeech').textContent = data.introSpeech;
+
+      speakText(data.introSpeech);
+    }
+
+    function handleDragStart(event, key) {
+      draggedBantasKey = key;
+      selectBantasCard(key);
+      event.dataTransfer.setData("text/plain", key);
+    }
+
+    function attemptPlaceBantas(targetSlot, bantasKey) {
+      const expectedBantas = targetSlot.dataset.targetBantas;
+      const slotId = targetSlot.dataset.slotId;
+      const bantasData = bantasInfo[bantasKey];
+
+      if (bantasKey === expectedBantas) {
+        playSoundEffect('correct');
+        userAnswers[slotId] = true;
+
+        targetSlot.className = `target-slot px-2.5 h-8 sm:h-9 ${bantasData.colorClass} text-white font-bold rounded-xl flex items-center justify-center transition-transform scale-105 shadow`;
+        targetSlot.innerHTML = `<span class="text-base sm:text-lg mr-1">${bantasData.symbol}</span> <i class="fa-solid fa-circle-check text-[10px]"></i>`;
+
+        speakText(bantasData.correctSpeech);
+        document.getElementById('activeAvatarSpeech').textContent = bantasData.correctSpeech;
+
+        updateScoreDisplay();
+        checkVictoryState();
+      } else {
+        playSoundEffect('wrong');
+        targetSlot.classList.add('animate-shake', 'border-red-500', 'bg-red-50');
+        setTimeout(() => {
+          targetSlot.classList.remove('animate-shake', 'border-red-500', 'bg-red-50');
+        }, 600);
+
+        speakText(bantasData.wrongSpeech);
+        document.getElementById('activeAvatarSpeech').textContent = bantasData.wrongSpeech;
+      }
+    }
+
+    function updateScoreDisplay() {
+      const correctCount = Object.keys(userAnswers).length;
+      document.getElementById('scoreDisplay').textContent = correctCount;
+      document.getElementById('totalBlanksDisplay').textContent = totalSlotsCount;
+    }
+
+    function checkVictoryState() {
+      const correctCount = Object.keys(userAnswers).length;
+      if (correctCount === totalSlotsCount && totalSlotsCount > 0) {
+        setTimeout(() => {
+          triggerVictoryModal();
+        }, 600);
+      }
+    }
+
+    function giveHint() {
+      const allSlots = document.querySelectorAll('.target-slot');
+      for (let slot of allSlots) {
+        const slotId = slot.dataset.slotId;
+        if (!userAnswers[slotId]) {
+          const correctKey = slot.dataset.targetBantas;
+          const correctData = bantasInfo[correctKey];
+
+          slot.classList.add('animate-pulse', 'bg-amber-300');
+          setTimeout(() => {
+            slot.classList.remove('animate-pulse', 'bg-amber-300');
+          }, 2000);
+
+          const hintMessage = `Pahiwatig: Ang bantas para sa patlang na ito ay si ${correctData.name}. ${correctData.introSpeech}`;
+          speakText(hintMessage);
+          document.getElementById('activeAvatarSpeech').textContent = hintMessage;
+          break;
+        }
+      }
+    }
+
+    function resetCurrentStanza() {
+      stopSpeech();
+      renderStanza(currentStanzaIndex);
+    }
+
+    function prevStanza() {
+      if (currentStanzaIndex > 0) renderStanza(currentStanzaIndex - 1);
+    }
+
+    function nextStanza() {
+      if (currentStanzaIndex < stanzasData.length - 1) renderStanza(currentStanzaIndex + 1);
+    }
+
+    function triggerVictoryModal() {
+      const modal = document.getElementById('victoryModal');
+      const modalCard = document.getElementById('victoryModalCard');
+      document.getElementById('finalScore').textContent = `${totalSlotsCount} / ${totalSlotsCount}`;
+
+      modal.classList.remove('hidden');
+      setTimeout(() => {
+        modal.classList.remove('opacity-0');
+        modalCard.classList.remove('scale-95');
+        modalCard.classList.add('scale-100');
+      }, 10);
+
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 120,
+          spread: 80,
+          origin: { y: 0.6 }
+        });
+      }
+
+      speakText("Napakahusay! Kumpleto at wasto ang lahat ng bantas sa dulo at loob ng bawat taludtod sa saknong!");
+    }
+
+    function closeVictoryModal() {
+      const modal = document.getElementById('victoryModal');
+      modal.classList.add('opacity-0');
+      setTimeout(() => {
+        modal.classList.add('hidden');
+        if (currentStanzaIndex < stanzasData.length - 1) {
+          nextStanza();
+        } else {
+          renderStanza(0);
+        }
+      }, 300);
+    }
+
+    function speakText(text) {
+      if (!('speechSynthesis' in window)) return;
+      synth.cancel();
+      currentSpeechText = text;
+
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = 1.0;
+      utterance.pitch = 1.1;
+
+      const voices = synth.getVoices();
+      const filipinoVoice = voices.find(v => v.lang.includes('tl') || v.lang.includes('fil') || v.lang.includes('id'));
+      if (filipinoVoice) utterance.voice = filipinoVoice;
+
+      const miniWave = document.getElementById('miniSoundWave');
+      utterance.onstart = () => { if (miniWave) miniWave.classList.remove('hidden'); };
+      utterance.onend = () => { if (miniWave) miniWave.classList.add('hidden'); };
+      utterance.onerror = () => { if (miniWave) miniWave.classList.add('hidden'); };
+
+      synth.speak(utterance);
+    }
+
+    function repeatCurrentSpeech() {
+      if (currentSpeechText) speakText(currentSpeechText);
+    }
+
+    function stopSpeech() {
+      if (synth.speaking || synth.paused) synth.cancel();
+    }
+
+    /* ================= MODULE 5: RUBRIC CALCULATOR ================= */
+    function calculateRubricScore() {
+      const s1 = parseInt(document.getElementById('score1').value) || 4;
+      const s2 = parseInt(document.getElementById('score2').value) || 4;
+      const s3 = parseInt(document.getElementById('score3').value) || 4;
+      const s4 = parseInt(document.getElementById('score4').value) || 4;
+
+      const total = s1 + s2 + s3 + s4;
+      const pct = Math.round((total / 16) * 100);
+
+      const totalEl = document.getElementById('rubricTotalScore');
+      const badgeEl = document.getElementById('rubricGradeBadge');
+
+      totalEl.innerText = `${total} / 16 (${pct}%)`;
+
+      if (pct >= 90) {
+        badgeEl.className = "px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-lg text-xs font-bold border border-emerald-500/30";
+        badgeEl.innerText = "Napakahusay (A+)";
+      } else if (pct >= 75) {
+        badgeEl.className = "px-3 py-1 bg-amber-500/20 text-amber-300 rounded-lg text-xs font-bold border border-amber-500/30";
+        badgeEl.innerText = "Mahusay (B)";
+      } else {
+        badgeEl.className = "px-3 py-1 bg-rose-500/20 text-rose-300 rounded-lg text-xs font-bold border border-rose-500/30";
+        badgeEl.innerText = "Pagpapabuti (C)";
+      }
+    }
+
+    /* ================= MODAL CONTROLS ================= */
+    function openInfoModal() {
+      document.getElementById('infoModal').classList.remove('hidden');
+    }
+    function closeInfoModal() {
+      document.getElementById('infoModal').classList.add('hidden');
+    }
+
+    /* Application Initialization */
+    window.onload = function() {
+      renderStanza(0);
+      selectBantasCard('tuldok');
+    };
+  </script>
+</body>
+</html>
